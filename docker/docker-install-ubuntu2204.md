@@ -84,6 +84,98 @@ Output
 >             └─15449 /usr/bin/docker-proxy -proto tcp -host-ip 0.0.0.0 -host-port 80 -container-ip 172.17.0.2 -container-port 80
 
 
-Installing Docker now gives you not just the Docker service (daemon) but also the docker command line utility, or the Docker client. We’ll explore how to use the docker command later in this tutorial.
+Installing Docker now gives you not just the Docker service (daemon) but also the docker command line utility, or the Docker client.
+
+## (OR) 
+
+install docker using apt-get 
+
+```
+apt-get update
+apt-get install docker*
+```
+To check:
+
+```
+docker
+docker version 
+```
+###  Working with Docker Images
+
+> $docker ps
+> CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+> $docker ps -a
+> CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+To check whether you can access and download images from Docker Hub, type:
+```
+docker run hello-world
+```
+##### The output will indicate that Docker in working correctly:
+
+```
+docker run hello-world
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+719385e32844: Pull complete
+Digest: sha256:4f53e2564790c8e7856ec08e384732aa38dc43c52f02952483e3f003afbf23db
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+````
+Image pull now and store locally.
+
+> docker pull ubuntu
+
+> docker images
+
+> docker run -it ubuntu
+
+output looks like:
+
+> Output
+
+> root@d9b100f2f636:/#
+
+To view all containers — active and inactive
+
+> $docker ps
+
+> docker ps -a
+
+> docker ps -l
+
+ To start a stopped container, use docker start, followed by the container ID or the container’s name. Let’s start the Ubuntu-based container with the ID of <exaple container id>:
+
+> docker stop <container id>
+
+> docker start <container id>
+
+> docker rm <container id>
+
+
+
+
 
 
