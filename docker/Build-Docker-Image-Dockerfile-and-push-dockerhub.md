@@ -25,7 +25,7 @@ The following table contains the important Dockerfile instructions and their exp
 |ENTRYPOINT|	Specifies the commands that will execute when the Docker container starts. If you don’t specify any ENTRYPOINT, it defaults to /bin/sh -c. You can also override ENTRYPOINT using the --entrypoint flag using CLI. Please refer CMD vs ENTRYPOINT for more information.|
 
 ### Overall files and directory tree structure: 
-![docker image](images/dockerfile-tree.png)
+![dockerfile treee](https://github.com/kloudbytes/certified-kubernetes-administator/blob/main/images/dockerfile-tree.png)
 
 ### Step-1: Create customized index.html and default file:
 
@@ -52,7 +52,7 @@ vi index.html
 <html>
    <body style="background-color:Bisque;">
       <h1>Welcome to container application...!</h1>
-      <p>Welcome to CKA Course</p>
+      <p>Welcome to CKA & Devops world</p>
       <p>Application Version: V1</p>
    </body>
 </html>
