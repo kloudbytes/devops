@@ -91,7 +91,7 @@ vi Dockerfile
 ```
 FROM ubuntu:20.04  
 LABEL maintainer="support@kloudbytes.in"
-RUN  apt-get -y update && apt-get -y install nginx && apt-get install curl
+RUN  apt-get -y update && apt-get -y install nginx && apt-get -y install curl
 COPY files/default /etc/nginx/sites-available/default
 COPY files/index.html /usr/share/nginx/html/index.html
 EXPOSE 80
