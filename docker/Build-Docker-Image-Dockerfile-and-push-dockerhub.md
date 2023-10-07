@@ -112,7 +112,7 @@ docker run --name mynginx -p 80:80 -d kloudbytesy/mynginx-image:v1
 
 ### Step-4: push the Docker image to Docker hub
 
-> docker push <your-docker-hub-id>/<your-image-name>:v1
+`docker push <your-docker-hub-id>/<your-image-name>:v1`
 
 ### Replace your docker hub account Id
 
