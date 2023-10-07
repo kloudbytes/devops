@@ -24,28 +24,25 @@ The following table contains the important Dockerfile instructions and their exp
 |CMD|	It is used to execute a command in a running container. There can be only one CMD, if multiple CMDs then it only applies to the last one. It can be overridden from the Docker CLI.|
 |ENTRYPOINT|	Specifies the commands that will execute when the Docker container starts. If you don’t specify any ENTRYPOINT, it defaults to /bin/sh -c. You can also override ENTRYPOINT using the --entrypoint flag using CLI. Please refer CMD vs ENTRYPOINT for more information.|
 
-## Step-1: Create the Dockerfile:
 
-```
-mkdir nginx-docker-image ; cd nginx-docker-image
-mkdir files
-```
-Create a .dockerignore file
-```
-touch .dockerignore
-```
-
-### Step-2: Create Dockerfile and copy our customized index.html
+### Step-1: Create customized index.html and default file:
 
 When you build a docker image for real-time projects, it contains code or application config files.
 
 For demo purposes, we will create a simple HTML file & config file as our app code and package it using Docker. This is a simple index.html file. You can create your own if you want.
 
-cd into the files folder
 ```
+mkdir nginx-docker-image ; cd nginx-docker-image
+
 mkdir files ; cd files
 ```
-Create a index.html file
+
+Create a .dockerignore file
+```
+touch .dockerignore
+```
+
+Create a index.html file in `files` directory
 
 vi index.html
 ```
@@ -59,7 +56,7 @@ vi index.html
 </html>
 ```
 
-Create a file name default
+Create a file name default file in `files` direcotry 
 
 ```
 vi default
@@ -80,45 +77,47 @@ server {
     }
 }
 ```
-## Create the Dockerfile
-Create a Dockerfile in the nginx-image folder.
 
-vi Dockerfile
+## Step-2: Create the Dockerfile:
+
+### Create the Dockerfile
+
+> Note:  Create a Dockerfile in the nginx-docker-image folder.
+
 Here’s the simple Dockerfile content for our use case. Add the content to the Dockerfile.
-
+vi Dockerfile
 ```
 FROM ubuntu:20.04  
-LABEL maintainer="support@kloudbytes.in 
-RUN  apt-get -y update && apt-get -y install nginx
+LABEL maintainer="support@kloudbytes.in"
+RUN  apt-get -y update && apt-get -y install nginx && apt-get install curl
 COPY files/default /etc/nginx/sites-available/default
 COPY files/index.html /usr/share/nginx/html/index.html
 EXPOSE 80
 CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
-
 ```
+
 ### Step-3: Build Docker Image & run it
 
-docker build -t kloudbytes/mynginx-image1:v1 .
-docker run --name mynginx1 -p 80:80 -d kloudbytesy/mynginx-image1:v1
+`docker build -t <your-docker-hub-id>/<container-name>:<version>`
+
+`docker run --name <container-name> -p 80:80 -d <your-docker-hub-id>/mynginx-image:v1`
 
 #### Replace your docker hub account Id
-docker build -t <your-docker-hub-id>/mynginx-image1:v1 .
-docker run --name mynginx1 -p 80:80 -d <your-docker-hub-id>/mynginx-image1:v1
-
-### Step-4: Tag & push the Docker image to Docker hub
-
 ```
-docker images
-docker tag kloudbytes/mynginx-image1:v1 kloudbytes/mynginx-image1:v1-release
-docker push kloudbytes/mynginx-image1:v1-release
-
+docker build -t kloudbytes/mynginx-image:v1 .
+docker run --name mynginx -p 80:80 -d kloudbytesy/mynginx-image:v1
 ```
+
+### Step-4: push the Docker image to Docker hub
+
+> docker push <your-docker-hub-id>/<your-image-name>:v1
 
 ### Replace your docker hub account Id
 
 ````
-docker tag <your-docker-hub-id>/mynginx-image1:v1 <your-docker-hub-id>/mynginx-image1:v1-release
-docker push <your-docker-hub-id>/mynginx-image1:v1-release
+docker images
+docker push kloudbytes/mynginx-image:v1
+
 ````
 
 ###  Step-5: Verify the same on the docker hub
