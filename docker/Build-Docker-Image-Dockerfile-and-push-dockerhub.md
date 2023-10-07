@@ -106,6 +106,7 @@ docker build -t <your-docker-hub-id>/mynginx-image1:v1 .
 docker run --name mynginx1 -p 80:80 -d <your-docker-hub-id>/mynginx-image1:v1
 
 ### Step-4: Tag & push the Docker image to Docker hub
+
 ```
 docker images
 docker tag kloudbytes/mynginx-image1:v1 kloudbytes/mynginx-image1:v1-release
@@ -118,8 +119,16 @@ docker push kloudbytes/mynginx-image1:v1-release
 ````
 docker tag <your-docker-hub-id>/mynginx-image1:v1 <your-docker-hub-id>/mynginx-image1:v1-release
 docker push <your-docker-hub-id>/mynginx-image1:v1-release
-```
+````
+
 ###  Step-5: Verify the same on the docker hub
 
 Login to docker hub and verify the image we have pushed
+
 Url: https://hub.docker.com/repositories
+
+
+#### Reference:
+* https://www.docker.com/
+* https://docs.docker.com/
+* Many Website and tutorials.
