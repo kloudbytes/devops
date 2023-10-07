@@ -24,6 +24,8 @@ The following table contains the important Dockerfile instructions and their exp
 |CMD|	It is used to execute a command in a running container. There can be only one CMD, if multiple CMDs then it only applies to the last one. It can be overridden from the Docker CLI.|
 |ENTRYPOINT|	Specifies the commands that will execute when the Docker container starts. If you don’t specify any ENTRYPOINT, it defaults to /bin/sh -c. You can also override ENTRYPOINT using the --entrypoint flag using CLI. Please refer CMD vs ENTRYPOINT for more information.|
 
+### Overall files and directory tree structure: 
+![docker image](images/dockerfile-tree.png)
 
 ### Step-1: Create customized index.html and default file:
 
