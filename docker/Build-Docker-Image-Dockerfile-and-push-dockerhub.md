@@ -43,7 +43,7 @@ For demo purposes, we will create a simple HTML file & config file as our app co
 
 cd into the files folder
 ```
-cd files
+mkdir files ; cd files
 ```
 Create a index.html file
 
