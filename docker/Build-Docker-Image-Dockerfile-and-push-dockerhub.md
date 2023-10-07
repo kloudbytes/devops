@@ -102,15 +102,56 @@ CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
 
 `docker build -t <your-docker-hub-id>/<container-name>:<version>`
 
-`docker run --name <container-name> -p 80:80 -d <your-docker-hub-id>/mynginx-image:v1`
-
 #### Replace your docker hub account Id
+
 ```
 docker build -t kloudbytes/mynginx-image:v1 .
-docker run --name mynginx -p 80:80 -d kloudbytesy/mynginx-image:v1
 ```
 
 ### Step-4: push the Docker image to Docker hub
+
+### Pushing Docker Images to a Docker Repository:
+
+```
+docker login -u kloudbytes
+Password:
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+
+```
+#### Check the new image:
+
+```
+docker images
+REPOSITORY                   TAG       IMAGE ID       CREATED              SIZE
+kloudbytes/mynginx-image     v1        a952f572c045   10 minutes ago      190MB
+
+```
+
+#### push the image to kloudbyetes docker hub:
+```
+docker push kloudbytes/mynginx-image:v1
+
+```
+
+output looks like this:
+```
+The push refers to repository [docker.io/kloudbytes/mynginx-image]
+4e4f2cd4aab5: Pushing [========>                                          ]  9.861MB/60.94MB
+d26d4f0eb474: Mounted from library/nginx
+a7e2a768c198: Mounted from library/nginx
+9c6261b5d198: Mounted from library/nginx
+ea43d4f82a03: Mounted from library/nginx
+1dc45c680d0f: Mounted from library/nginx
+eb7e3384f0ab: Mounted from library/nginx
+d310e774110a: Mounted from library/nginx
+...
+...
+1.0: digest: sha256:e63264f2d292c632a3615d6298706734748c2f65eeda80117a2993d96282a4e8 size: 1990
+```
 
 `docker push <your-docker-hub-id>/<your-image-name>:v1`
 
@@ -128,6 +169,11 @@ Login to docker hub and verify the image we have pushed
 
 Url: https://hub.docker.com/repositories
 
+### Step-6:  run the 'mynginx-image:v1' container
+
+```
+docker run  kloudbytes/mynginx-image:v1
+```
 
 #### Reference:
 * https://www.docker.com/
