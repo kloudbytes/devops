@@ -108,9 +108,7 @@ CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
 docker build -t kloudbytes/mynginx-image:v1 .
 ```
 
-### Step-4: push the Docker image to Docker hub
-
-### Pushing Docker Images to a Docker Repository:
+### Step-4: Pushing Docker Images to a Docker Repository:
 
 ```
 docker login -u kloudbytes
@@ -134,6 +132,17 @@ kloudbytes/mynginx-image     v1        a952f572c045   10 minutes ago      190MB
 #### push the image to kloudbyetes docker hub:
 ```
 docker push kloudbytes/mynginx-image:v1
+```
+
+```
+output looks like this:
+
+docker push kloudbytes/mynginx-image:v1
+The push refers to repository [docker.io/kloudbytes/mynginx-image]
+c875980d9611: Pushed
+9b5262557c27: Pushed
+9dd85f5ca49a: Pushing [====================>                              ]  48.52MB/117MB
+954c82bdeb5f: Mounted from library/ubuntu
 
 ```
 
@@ -153,16 +162,6 @@ d310e774110a: Mounted from library/nginx
 1.0: digest: sha256:e63264f2d292c632a3615d6298706734748c2f65eeda80117a2993d96282a4e8 size: 1990
 ```
 
-`docker push <your-docker-hub-id>/<your-image-name>:v1`
-
-### Replace your docker hub account Id
-
-````
-docker images
-docker push kloudbytes/mynginx-image:v1
-
-````
-
 ###  Step-5: Verify the same on the docker hub
 
 Login to docker hub and verify the image we have pushed
@@ -174,6 +173,46 @@ Url: https://hub.docker.com/repositories
 ```
 docker run  kloudbytes/mynginx-image:v1
 ```
+
+(OR)
+
+```
+#vi mynginx-1.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: mynginx-1
+  name: mynginx-1
+spec:
+  containers:
+  - image: kloudbytes/mynginx-image:v1
+    name: mynginx-1
+```
+
+```
+kubectl create -f mynginx-1.yaml
+
+output:
+ pod/mynginx-1 created
+
+
+kubectl get po mynginx-1
+
+outuput:
+NAME        READY   STATUS    RESTARTS   AGE
+mynginx-1   1/1     Running   0          55s
+
+```
+```
+kubectl describe po mynginx-1 | grep image
+```
+output:
+
+    Image:          kloudbytes/mynginx-image:v1
+
+    Image ID:       docker.io/kloudbytes/mynginx-image@sha256:215950cbacefc4b59bf39f3287804f393bfeceb918e13f550c5f3b08694df78d
 
 #### Reference:
 * https://www.docker.com/
