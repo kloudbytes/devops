@@ -76,6 +76,10 @@ Note:  3f4e1477e4e0 is nginx container id
 <repository/<new-imge name:version>
 
 docker commit -m nginx-kb-1c-app -a kloudbytes 3f4e1477e4e0 kloudbytes/nginx-kb-1c-app:1.0
+
+(or)
+locally: docker commit -m nginx-kb-1c-app:1.0  -a kloudbytes 3f4e1477e4e0 nginx-kb-1c-app:1.0
+docker images
 ```
 > sha256:21bb5d6ab43b9318b2149917a76a257a3700535a246f62af1aa6174e3e1ade71
 
